@@ -35,7 +35,7 @@
             android:name=".view.ui.RegistroUsuarioActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ui.BusquedaActivity"
+            android:name=".view.ui.eBusquedaActivity"
             android:exported="false" />
         <activity
             android:name=".view.ui.RegistroActivity"
