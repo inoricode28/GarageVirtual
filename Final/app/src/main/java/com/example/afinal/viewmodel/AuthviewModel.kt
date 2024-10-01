@@ -1,6 +1,7 @@
 package com.example.afinal.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.example.afinal.repository.AuthRepository
 import com.example.afinal.retrofit.request.LoginRequest
 import com.example.afinal.retrofit.request.RegistroRequest
@@ -10,7 +11,7 @@ import com.example.afinal.retrofit.response.RegistroResponse
 import com.example.afinal.retrofit.response.RegistroVehiculoResponse
 import com.example.afinal.retrofit.response.VehiculoResponse
 
-class AuthviewModel {
+class AuthViewModel: ViewModel() {
 
     var loginResponse: LiveData<LoginResponse>
     var registroResponse: LiveData<RegistroResponse>
