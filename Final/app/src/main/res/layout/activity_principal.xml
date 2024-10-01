@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ui.PrincipalActivity">
+
+    <!-- Botón Vehículos -->
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="186dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="43dp"
+        android:gravity="center"
+        android:text="Garaje Virtual"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/icon_vehicles"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+    </LinearLayout>
+
+    <!-- Botón Mecánico -->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints">
+
+    </LinearLayout>
+
+    <!-- Botón Mantenimientos -->
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:ignore="MissingConstraints">
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_maintenance"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="114dp"
+        android:text="Mantenimientos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon_maintenance"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/icon_mechanic"
+        android:layout_width="122dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="21dp"
+        android:src="@drawable/taller"
+        app:layout_constraintBottom_toTopOf="@+id/btn_mechanic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_vehicles"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_mechanic"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="22dp"
+        android:text="Mecánico"
+        app:layout_constraintBottom_toTopOf="@+id/icon_maintenance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon_mechanic"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/icon_vehicles"
+        android:layout_width="115dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/vehiculo"
+        app:layout_constraintBottom_toTopOf="@+id/btn_vehicles"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_vehicles"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:text="Vehículos"
+        app:layout_constraintBottom_toTopOf="@+id/icon_mechanic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon_vehicles"
+        tools:ignore="DuplicateClickableBoundsCheck,MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/icon_maintenance"
+        android:layout_width="75dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="13dp"
+        android:src="@drawable/mante"
+        app:layout_constraintBottom_toTopOf="@+id/btn_maintenance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_mechanic"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

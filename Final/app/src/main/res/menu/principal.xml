@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_vehicles"
+        android:title="Vehículos"
+        app:showAsAction="always" />
+
+    <!-- Opción 2: Mecánico -->
+    <item
+        android:id="@+id/action_mechanic"
+        android:title="Mecánico"
+        app:showAsAction="always" />
+
+    <!-- Opción 3: Mantenimientos -->
+    <item
+        android:id="@+id/action_maintenance"
+        android:title="Mantenimientos"
+        app:showAsAction="always" />
+
+</menu>
