@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.buttonIngresar -> autenticarUsuario()
-            R.id.buttonRegistrar -> startActivity(Intent(applicationContext, RegistroActivity::class.java))
+            R.id.buttonRegistrar -> startActivity(Intent(applicationContext, RegistroUsuarioActivity::class.java))
             R.id.tvOlvidoContrasena -> startActivity(Intent(applicationContext, RecuperarContrasenaActivity::class.java))
             R.id.btnAyuda -> startActivity(Intent(applicationContext, AyudaActivity::class.java))
         }
