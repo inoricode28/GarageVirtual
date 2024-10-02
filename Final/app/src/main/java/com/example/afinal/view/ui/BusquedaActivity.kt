@@ -2,7 +2,9 @@ package com.example.afinal.view.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -27,22 +29,13 @@ class eBusquedaActivity : AppCompatActivity(), View.OnClickListener {
         setupRecyclerView()
 
         // Observar la lista de vehículos
-        viewModel.listarVehiculo().observe(this, Observer { vehiculos ->
-            if (vehiculos != null) {
-                setupVehiculoAdapter(vehiculos)
-            }
-        })
+        listarVehiculos() // Listar todos los vehículos al iniciar la actividad
 
         // Observar la respuesta de eliminación
         viewModel.eliminarVehiculoResponse.observe(this, Observer { eliminado ->
             if (eliminado) {
                 Toast.makeText(this, "Vehículo eliminado correctamente", Toast.LENGTH_SHORT).show()
-                // Actualizar la lista de vehículos después de eliminar
-                viewModel.listarVehiculo().observe(this, Observer { vehiculos ->
-                    if (vehiculos != null) {
-                        setupVehiculoAdapter(vehiculos)
-                    }
-                })
+                listarVehiculos() // Actualizar la lista de vehículos después de eliminar
             } else {
                 Toast.makeText(this, "Error al eliminar el vehículo", Toast.LENGTH_SHORT).show()
             }
@@ -57,7 +50,24 @@ class eBusquedaActivity : AppCompatActivity(), View.OnClickListener {
             if (placa.isNotEmpty()) {
                 buscarVehiculoPorPlaca(placa)
             } else {
-                Toast.makeText(this, "Ingrese la placa del vehículo", Toast.LENGTH_SHORT).show()
+                listarVehiculos() // Listar todos los vehículos si el campo está vacío
+                Toast.makeText(this, "Ingrese una placa valida", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Listener para detectar el evento de "Enter" en el searchField
+        binding.searchField.setOnEditorActionListener { _, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)) {
+                val placa = binding.searchField.text.toString().trim()
+                if (placa.isNotEmpty()) {
+                    buscarVehiculoPorPlaca(placa)
+                } else {
+                    listarVehiculos() // Listar todos los vehículos si el campo está vacío
+                }
+                true
+            } else {
+                false
             }
         }
     }
@@ -82,6 +92,16 @@ class eBusquedaActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun buscarVehiculoPorPlaca(placa: String) {
         viewModel.buscarVehiculoPorPlaca(placa).observe(this, Observer { vehiculos ->
+            if (vehiculos != null && vehiculos.isNotEmpty()) {
+                setupVehiculoAdapter(vehiculos)
+            } else {
+                Toast.makeText(this, "No se encontró vehículo con esa placa", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun listarVehiculos() {
+        viewModel.listarVehiculo().observe(this, Observer { vehiculos ->
             if (vehiculos != null) {
                 setupVehiculoAdapter(vehiculos)
             }
