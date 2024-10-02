@@ -43,7 +43,7 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when(v.id){
-            R.id.btnBack -> startActivity(Intent(applicationContext, PrincipalActivity::class.java))
+            R.id.btnBack -> startActivity(Intent(applicationContext, eBusquedaActivity::class.java))
             R.id.btnRegistro -> registrarVehiculo()
         }
     }

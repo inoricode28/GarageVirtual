@@ -1,8 +1,8 @@
 package com.example.afinal.retrofit.response
 
 data class VehiculoResponse (
-    var placa: String,
-    var marca: String,
-    var modelo: String,
-    var kilometraje: String
+    var Placa: String,
+    var Marca: String,
+    var Modelo: String,
+    var Kilometraje: String
 )
