@@ -3,6 +3,7 @@ package com.example.afinal.view.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -32,10 +33,20 @@ class eBusquedaActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
 
-        // Acción del botón de búsqueda (puedes agregar lógica para la búsqueda aquí)
-        binding.btnSearch.setOnClickListener {
-            // Implementar la lógica de búsqueda si es necesario
-        }
+        // Observar la respuesta de eliminación
+        viewModel.eliminarVehiculoResponse.observe(this, Observer { eliminado ->
+            if (eliminado) {
+                Toast.makeText(this, "Vehículo eliminado correctamente", Toast.LENGTH_SHORT).show()
+                // Actualizar la lista de vehículos después de eliminar
+                viewModel.listarVehiculo().observe(this, Observer { vehiculos ->
+                    if (vehiculos != null) {
+                        setupVehiculoAdapter(vehiculos)
+                    }
+                })
+            } else {
+                Toast.makeText(this, "Error al eliminar el vehículo", Toast.LENGTH_SHORT).show()
+            }
+        })
 
         // Acción del botón de registrar nuevo vehículo
         binding.buttonRegistrarVehiculo.setOnClickListener(this)
@@ -56,12 +67,12 @@ class eBusquedaActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun eliminarVehiculo(vehiculo: VehiculoResponse) {
-        // Implementar lógica de eliminación
+        // Llamar al método para eliminar el vehículo en el ViewModel
+        viewModel.eliminarVehiculo(vehiculo.id)
     }
 
     override fun onClick(v: View) {
         when (v.id) {
-
             R.id.button_registrar_vehiculo -> startActivity(Intent(applicationContext, RegistroActivity::class.java))
         }
     }

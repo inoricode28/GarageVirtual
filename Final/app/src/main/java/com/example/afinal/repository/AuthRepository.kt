@@ -20,6 +20,7 @@ class AuthRepository {
     var registroResponse = MutableLiveData<RegistroResponse>()
     var registroVehiculoResponse = MutableLiveData<RegistroVehiculoResponse>()
     var vehiculoResponse = MutableLiveData<List<VehiculoResponse>>()
+    var eliminarVehiculoResponse = MutableLiveData<Boolean>() // Para monitorear si la eliminación fue exitosa
 
 
     fun login(loginRequest: LoginRequest): MutableLiveData<LoginResponse> {
@@ -75,6 +76,26 @@ class AuthRepository {
             }
         })
         return vehiculoResponse
+    }
+
+    // Eliminar vehículo
+    fun eliminarVehiculo(id: Int): MutableLiveData<Boolean> {
+        val call: Call<Void> = GarageCliente.retrofitService.eliminarVehiculo(id)
+        call.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    eliminarVehiculoResponse.value = true // Éxito al eliminar
+                } else {
+                    eliminarVehiculoResponse.value = false // Error en la respuesta
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.e("ErrorEliminarVehiculo", t.message.toString())
+                eliminarVehiculoResponse.value = false // Error en la eliminación
+            }
+        })
+        return eliminarVehiculoResponse
     }
 
 
