@@ -21,6 +21,7 @@ class AuthRepository {
     var registroVehiculoResponse = MutableLiveData<RegistroVehiculoResponse>()
     var vehiculoResponse = MutableLiveData<List<VehiculoResponse>>()
 
+
     fun login(loginRequest: LoginRequest): MutableLiveData<LoginResponse> {
         val call: Call<LoginResponse> = GarageCliente.retrofitService.login(loginRequest)
         call.enqueue(object : Callback<LoginResponse> {
@@ -75,4 +76,8 @@ class AuthRepository {
         })
         return vehiculoResponse
     }
+
+
+
+
 }

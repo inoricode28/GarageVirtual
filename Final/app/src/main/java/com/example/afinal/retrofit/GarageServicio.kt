@@ -9,8 +9,10 @@ import com.example.afinal.retrofit.response.RegistroVehiculoResponse
 import com.example.afinal.retrofit.response.VehiculoResponse
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface GarageServicio {
 
@@ -25,4 +27,7 @@ interface GarageServicio {
 
     @GET("vehiculo")
     fun listarVehiculo(): Call<List<VehiculoResponse>>
+
+    @DELETE("vehiculo/{id}")
+    fun eliminarVehiculo(@Path("id") id: Int): Call<Void>
 }
