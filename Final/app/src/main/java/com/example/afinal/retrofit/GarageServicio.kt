@@ -30,4 +30,7 @@ interface GarageServicio {
 
     @DELETE("vehiculo/{id}")
     fun eliminarVehiculo(@Path("id") id: Int): Call<Void>
+
+    @GET("vehiculo/placa/{placa}")
+    fun buscarVehiculoPorPlaca(@Path("placa") placa: String): Call<List<VehiculoResponse>>
 }

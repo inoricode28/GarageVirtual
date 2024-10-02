@@ -98,6 +98,20 @@ class AuthRepository {
         return eliminarVehiculoResponse
     }
 
+    fun buscarVehiculoPorPlaca(placa: String): MutableLiveData<List<VehiculoResponse>> {
+        val vehiculoResponse = MutableLiveData<List<VehiculoResponse>>()
+        val call: Call<List<VehiculoResponse>> = GarageCliente.retrofitService.buscarVehiculoPorPlaca(placa)
+        call.enqueue(object : Callback<List<VehiculoResponse>> {
+            override fun onResponse(call: Call<List<VehiculoResponse>>, response: Response<List<VehiculoResponse>>) {
+                vehiculoResponse.value = response.body()
+            }
+            override fun onFailure(call: Call<List<VehiculoResponse>>, t: Throwable) {
+                Log.e("ErrorBuscarVehiculo", t.message.toString())
+            }
+        })
+        return vehiculoResponse
+    }
+
 
 
 

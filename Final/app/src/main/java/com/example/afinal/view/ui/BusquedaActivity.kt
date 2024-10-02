@@ -51,6 +51,15 @@ class eBusquedaActivity : AppCompatActivity(), View.OnClickListener {
         // Acción del botón de registrar nuevo vehículo
         binding.buttonRegistrarVehiculo.setOnClickListener(this)
 
+        // Acción del botón de buscar por placa
+        binding.btnSearch.setOnClickListener {
+            val placa = binding.searchField.text.toString().trim()
+            if (placa.isNotEmpty()) {
+                buscarVehiculoPorPlaca(placa)
+            } else {
+                Toast.makeText(this, "Ingrese la placa del vehículo", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun setupRecyclerView() {
@@ -69,6 +78,14 @@ class eBusquedaActivity : AppCompatActivity(), View.OnClickListener {
     private fun eliminarVehiculo(vehiculo: VehiculoResponse) {
         // Llamar al método para eliminar el vehículo en el ViewModel
         viewModel.eliminarVehiculo(vehiculo.id)
+    }
+
+    private fun buscarVehiculoPorPlaca(placa: String) {
+        viewModel.buscarVehiculoPorPlaca(placa).observe(this, Observer { vehiculos ->
+            if (vehiculos != null) {
+                setupVehiculoAdapter(vehiculos)
+            }
+        })
     }
 
     override fun onClick(v: View) {

@@ -58,4 +58,8 @@ class AuthViewModel: ViewModel() {
         eliminarVehiculoResponse = repository.eliminarVehiculo(id)
     }
 
+    fun buscarVehiculoPorPlaca(placa: String): LiveData<List<VehiculoResponse>> {
+        return repository.buscarVehiculoPorPlaca(placa)
+    }
+
 }
