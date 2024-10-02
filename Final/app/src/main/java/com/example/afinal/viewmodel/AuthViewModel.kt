@@ -31,7 +31,7 @@ class AuthViewModel: ViewModel() {
 
     fun registro(nombre:String, apellido:String,
                  correo:String, celular:String,
-                 user:String,pass: String){
+                 user:String, pass: String){
         registroResponse = repository.registro(
             RegistroRequest(nombre,apellido,correo,
             celular, user, pass)
