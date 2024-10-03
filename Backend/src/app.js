@@ -26,7 +26,7 @@ app.use("/api/usuario", usuarioRouters);
 app.use("/api/producto", productoRouters);
 app.use("/api/cliente", clienteRouters);
 app.use("/api/tarjeta", tarjetaRouters);
-app.use("/api/vehiculo", vehiculoRouters);
+app.use("/api/vehiculo", vehiculoRouters);  // Ya incluye las rutas, incluida la de placa "GET /api/vehiculo/placa/{placa}" || GET /api/vehiculo/placa/ABC123 || http://192.168.1.171:4000/api/vehiculo/placa/GHI789
 app.use("/api/ccv", validarRouters);
 
 export default app;

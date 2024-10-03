@@ -1,4 +1,3 @@
-// vehiculo.controller.js
 import { getConnection } from "./../database/conexcion";
 
 const getVehiculos = async (req, res) => {
@@ -19,6 +18,25 @@ const getVehiculo = async (req, res) => {
         const [rows] = await connection.query("SELECT id, Placa, Marca, Modelo, Kilometraje FROM Vehiculo WHERE id = ?", [id]);
         console.log(rows); // Solo los datos del vehículo solicitado
         res.json(rows); // Envía solo los datos del vehículo solicitado al cliente
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
+// Nuevo método para buscar por placa
+const getVehiculoByPlaca = async (req, res) => {
+    try {
+        const { placa } = req.params;  // Se obtiene la placa desde los parámetros de la URL
+        const connection = await getConnection();
+        const [rows] = await connection.query("SELECT id, Placa, Marca, Modelo, Kilometraje FROM Vehiculo WHERE Placa = ?", [placa]);
+
+        // Si no se encuentra ningún vehículo con esa placa
+        if (rows.length === 0) {
+            res.status(404).json({ message: "Vehículo no encontrado" });
+            return;
+        }
+
+        res.json(rows);  // Envía los datos del vehículo encontrado
     } catch (error) {
         res.status(500).send(error.message);
     }
@@ -74,9 +92,11 @@ const deleteVehiculo = async (req, res) => {
     }
 };
 
+// Exportación de los métodos, incluyendo el nuevo método para buscar por placa
 export const methods = {
     getVehiculos,
-    getVehiculo,
+    getVehiculo,   
+    getVehiculoByPlaca,  // Nuevo método agregado aquí
     addVehiculo,
     updateVehiculo,
     deleteVehiculo
