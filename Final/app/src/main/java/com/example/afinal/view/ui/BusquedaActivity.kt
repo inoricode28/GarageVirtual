@@ -2,6 +2,7 @@ package com.example.afinal.view.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -28,6 +29,9 @@ class eBusquedaActivity : AppCompatActivity(), View.OnClickListener {
         // Configurar RecyclerView
         setupRecyclerView()
 
+        // Configurar el menú
+        setupMenu()
+
         // Observar la lista de vehículos
         listarVehiculos() // Listar todos los vehículos al iniciar la actividad
 
@@ -43,6 +47,7 @@ class eBusquedaActivity : AppCompatActivity(), View.OnClickListener {
 
         // Acción del botón de registrar nuevo vehículo
         binding.buttonRegistrarVehiculo.setOnClickListener(this)
+
 
         // Acción del botón de buscar por placa
         binding.btnSearch.setOnClickListener {
@@ -75,6 +80,30 @@ class eBusquedaActivity : AppCompatActivity(), View.OnClickListener {
     private fun setupRecyclerView() {
         binding.recyclerViewVehiculos.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewVehiculos.setHasFixedSize(true)
+    }
+
+    private fun setupMenu() {
+        // Configura el listener para los ítems del menú
+        binding.toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_vehicles -> {
+                    // Redirigir a eBusquedaActivity
+                    startActivity(Intent(this, eBusquedaActivity::class.java))
+                    true
+                }
+                R.id.action_mechanic -> {
+                    // Redirigir a TallerActivity
+                    startActivity(Intent(this, TallerActivity::class.java))
+                    true
+                }
+                R.id.action_maintenance -> {
+                    // Redirigir a MantenimientoActivity
+                    startActivity(Intent(this, MantenimientoActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun setupVehiculoAdapter(vehiculos: List<VehiculoResponse>) {

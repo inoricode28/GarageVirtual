@@ -11,6 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:padding="16dp"
@@ -19,7 +20,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Garaje Virtual" />
+        app:title="GV"
+        app:menu="@menu/principal"/>
 
     <!-- CardView para búsqueda y botón de registrar -->
     <androidx.cardview.widget.CardView

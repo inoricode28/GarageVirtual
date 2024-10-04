@@ -2,21 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- Opción 1: Vehiculo -->
     <item
         android:id="@+id/action_vehicles"
         android:title="Vehículos"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        android:icon="@drawable/baseline_directions_car_24"/>
 
     <!-- Opción 2: Mecánico -->
     <item
         android:id="@+id/action_mechanic"
         android:title="Mecánico"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        android:icon="@drawable/baseline_construction_24"/>
 
-    <!-- Opción 3: Mantenimientos -->
+    <!-- Opción 3: Mantenimiento -->
     <item
         android:id="@+id/action_maintenance"
         android:title="Mantenimientos"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        android:icon="@drawable/baseline_medical_services_24"/>
 
 </menu>
